@@ -1,7 +1,7 @@
 package privada.proyecto;
 import java.util.*;
 
-public class login {
+public class loginTest {
     private static final Map<String, String> usuarios = new HashMap<>();
     private static final Set<String> bloqueados = new HashSet<>();
     private static final Map<String, Integer> intentosFallidos = new HashMap<>();
