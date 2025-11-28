@@ -8,82 +8,82 @@ public class pUnitariasTest {
     @BeforeEach
     public void resetEstado() {
         try {
-            java.lang.reflect.Field intentos = login.class.getDeclaredField("intentosFallidos");
+            java.lang.reflect.Field intentos = loginTestTest.class.getDeclaredField("intentosFallidos");
             intentos.setAccessible(true);
             ((java.util.Map<?, ?>) intentos.get(null)).clear();
         } catch (Exception e) {
-            fail("Error al reiniciar el estado de la clase login");
+            fail("Error al reiniciar el estado de la clase loginTest");
         }
     }
 
     @Test
     public void testInicioSesionExitoso() {
-        assertTrue(login.iniciarSesion("admin", "1234"));
+        assertTrue(loginTest.iniciarSesion("admin", "1234"));
     }
 
     @Test
     public void testUsuarioInexistente() {
-        assertFalse(login.iniciarSesion("noExiste", "1234"));
-        assertEquals(1, login.getIntentosFallidos("noExiste"));
+        assertFalse(loginTest.iniciarSesion("noExiste", "1234"));
+        assertEquals(1, loginTest.getIntentosFallidos("noExiste"));
     }
 
     @Test
     public void testContraseñaIncorrecta() {
-        assertFalse(login.iniciarSesion("admin", "wrongpass"));
-        assertEquals(1, login.getIntentosFallidos("admin"));
+        assertFalse(loginTest.iniciarSesion("admin", "wrongpass"));
+        assertEquals(1, loginTest.getIntentosFallidos("admin"));
     }
 
     @Test
     public void testUsuarioNulo() {
-        assertFalse(login.iniciarSesion(null, "1234"));
+        assertFalse(loginTest.iniciarSesion(null, "1234"));
     }
 
     @Test
     public void testContraseñaNula() {
-        assertFalse(login.iniciarSesion("admin", null));
+        assertFalse(loginTest.iniciarSesion("admin", null));
     }
 
     @Test
     public void testUsuarioConEspacios() {
-        assertFalse(login.iniciarSesion("   ", "1234"));
+        assertFalse(loginTest.iniciarSesion("   ", "1234"));
     }
 
     @Test
     public void testContraseñaVacia() {
-        assertFalse(login.iniciarSesion("admin", ""));
+        assertFalse(loginTest.iniciarSesion("admin", ""));
     }
 
     @Test
     public void testUsuarioVacio() {
-        assertFalse(login.iniciarSesion("", "1234"));
+        assertFalse(loginTest.iniciarSesion("", "1234"));
     }
 
     @Test
     public void testMayusculasMinusculas() {
-        assertFalse(login.iniciarSesion("Admin", "1234")); 
+        assertFalse(loginTest.iniciarSesion("Admin", "1234")); 
     }
 
     @Test
     public void testUsuarioConMayusculasValido() {
-        assertTrue(login.iniciarSesion("UsuarioMayus", "Clave"));
+        assertTrue(loginTest.iniciarSesion("UsuarioMayus", "Clave"));
     }
 
     @Test
     public void testUsuarioBloqueado() {
-        assertFalse(login.iniciarSesion("bloqueado", "0000"));
+        assertFalse(loginTest.iniciarSesion("bloqueado", "0000"));
     }
 
     @Test
     public void testUsuarioCaracteresEspeciales() {
-        assertTrue(login.iniciarSesion("usuarioEspecial", "pass@2025"));
+        assertTrue(loginTest.iniciarSesion("usuarioEspecial", "pass@2025"));
     }
 
     @Test
     public void testMultiplesIntentosFallidos() {
-        login.iniciarSesion("admin", "wrong1");
-        login.iniciarSesion("admin", "wrong2");
-        login.iniciarSesion("admin", "wrong3");
-        login.iniciarSesion("admin", "wrong4");
-        assertEquals(3, login.getIntentosFallidos("admin"));
+        loginTest.iniciarSesion("admin", "wrong1");
+        loginTest.iniciarSesion("admin", "wrong2");
+        loginTest.iniciarSesion("admin", "wrong3");
+        loginTest.iniciarSesion("admin", "wrong4");
+        assertEquals(3, loginTest.getIntentosFallidos("admin"));
     }
 }
