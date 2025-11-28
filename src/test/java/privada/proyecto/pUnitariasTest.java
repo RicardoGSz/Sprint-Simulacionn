@@ -3,7 +3,7 @@ package privada.proyecto;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-public class pUnitarias {
+public class pUnitariasTest {
 
     @BeforeEach
     public void resetEstado() {
